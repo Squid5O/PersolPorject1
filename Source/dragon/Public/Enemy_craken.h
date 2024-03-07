@@ -26,4 +26,18 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* target;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float speed = 500.0f;
+
+	UFUNCTION()
+	void OnMyCompBeginOverLap(
+		UPrimitiveComponent* OnComponentBeginOverlap,
+		AActor* OtherActor,
+		UPrimitiveComponent* OtherComp,
+		int32 OtherBodyIndex,
+		bool bFromSweep,
+		const FHitResult& SweepResult);
 };
