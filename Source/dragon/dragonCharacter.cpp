@@ -67,6 +67,17 @@ void AdragonCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	FTimerHandle MyTimer;
+
+	GetWorld()->GetTimerManager().SetTimer(MyTimer, FTimerDelegate::CreateLambda([&]()
+		{
+
+			GetWorld()->SpawnActor<AActor>(ActorToSpawn, GetActorTransform());
+
+			// TimerHandle ÃÊ±âÈ­
+			GetWorld()->GetTimerManager().ClearTimer(MyTimer);
+		}), BulletTime, true);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -127,4 +138,11 @@ void AdragonCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AdragonCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+
 }

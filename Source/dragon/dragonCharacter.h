@@ -46,7 +46,9 @@ class AdragonCharacter : public ACharacter
 
 public:
 	AdragonCharacter();
-	
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 
@@ -69,5 +71,12 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+
+	UPROPERTY(EditAnywhere)
+	float BulletTime = 1.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AActor>ActorToSpawn;
 };
 
